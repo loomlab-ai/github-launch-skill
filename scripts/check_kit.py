@@ -21,8 +21,6 @@ REQUIRED = [
     "README.zh-CN.md",
     "CONTRIBUTING.md",
     ".gitignore",
-    "llms.txt",
-    "docs/llms.txt",
     "docs/index.html",
     "docs/.nojekyll",
     "skills/github-launch/SKILL.md",
@@ -31,7 +29,6 @@ REQUIRED = [
     "templates/README.md.tmpl",
     "templates/README.zh-CN.md.tmpl",
     "templates/ABOUT.txt",
-    "templates/llms.txt.tmpl",
     "templates/LICENSE.MIT.txt",
     "templates/.github/workflows/ci.yml.tmpl",
     "templates/docs/index.md.tmpl",
@@ -68,16 +65,12 @@ LINK_FILES = [
     "CONTRIBUTING.md",
     "skills/github-launch/SKILL.md",
     "docs/index.html",
-    "llms.txt",
-    "docs/llms.txt",
 ]
 
 PUBLIC_COPY = [
     "README.md",
     "README.zh-CN.md",
     "docs/index.html",
-    "llms.txt",
-    "docs/llms.txt",
 ]
 
 TOKEN_FREE = PUBLIC_COPY + ["CONTRIBUTING.md"]
@@ -262,9 +255,11 @@ def main() -> int:
     ):
         if phrase not in description:
             fail(f"SKILL.md description missing {phrase!r}")
-    for phrase in ("soft skill", "git push", "llms.txt", "160"):
+    for phrase in ("soft skill", "git push", "FAQ", "160"):
         if phrase not in skill_text:
             fail(f"SKILL.md body missing {phrase!r}")
+    if "llms.txt" in skill_text:
+        fail("SKILL.md must not require llms.txt")
     if "author: loomlab" not in meta.get("metadata", ""):
         fail("SKILL.md metadata.author is not loomlab")
 
@@ -294,7 +289,7 @@ def main() -> int:
     for topic in topics:
         if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", topic):
             fail(f"illegal example topic {topic!r}")
-    for rel in ("README.md", "README.zh-CN.md", "docs/index.html", "llms.txt"):
+    for rel in ("README.md", "README.zh-CN.md", "docs/index.html"):
         if summary not in read(rel):
             fail(f"{rel}: missing the About description")
     for rel in ("README.md", "README.zh-CN.md"):
@@ -389,14 +384,6 @@ def main() -> int:
             if data.get("name") != "github-launch-skill":
                 fail("JSON-LD name is not github-launch-skill")
 
-    if read("llms.txt") != read("docs/llms.txt"):
-        fail("docs/llms.txt is not the same file as llms.txt")
-    llms = read("llms.txt")
-    if not llms.startswith("# github-launch-skill\n"):
-        fail("llms.txt must start with the project H1")
-    if "\n> " not in llms:
-        fail("llms.txt is missing the blockquote summary")
-
     workflow = read(".github/workflows/ci.yml")
     for needle in ("actions/checkout@v7", "permissions:", "python3 scripts/check_kit.py"):
         if needle not in workflow:
@@ -450,7 +437,6 @@ def main() -> int:
     )
     for rel, token in (
         ("templates/ABOUT.txt", "{{ABOUT_DESCRIPTION}}"),
-        ("templates/llms.txt.tmpl", "{{REPO_URL}}"),
         ("templates/CHECKLIST.md", "{{PROJECT_NAME}}"),
         ("templates/LICENSE.MIT.txt", "{{YEAR}}"),
         ("templates/LICENSE.MIT.txt", "{{COPYRIGHT_HOLDER}}"),
@@ -476,6 +462,23 @@ def main() -> int:
 
     for rel in LINK_FILES:
         check_links(rel)
+
+    banned = "llms.txt"
+    for path in ROOT.rglob("*"):
+        if not path.is_file() or ".git" in path.parts:
+            continue
+        rel = path.relative_to(ROOT).as_posix()
+        if rel == "scripts/check_kit.py":
+            continue
+        if path.name in {banned, "llms.txt.tmpl"}:
+            fail(f"do not ship {rel}")
+            continue
+        try:
+            body = path.read_text(encoding="utf-8")
+        except UnicodeError:
+            continue
+        if banned in body:
+            fail(f"{rel}: do not mention {banned}")
 
     report()
     return 1 if ERRORS else 0

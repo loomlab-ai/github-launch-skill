@@ -38,7 +38,7 @@ ship this to GitHub
 - 许可证：默认 MIT；需要专利授权用 Apache-2.0，需要网络 copyleft 用 AGPL-3.0
 - 添加尽量短的 GitHub Actions 工作流（lint、测试或文档检查）
 - 准备 `/docs` 下的 GitHub Pages，并写明在 Settings 里如何打开（技能不会替你打开 Pages）
-- GEO 与 SEO：稳定标题、FAQ、`llms.txt`、Pages meta
+- GEO 与 SEO：稳定标题、FAQ、Pages meta
 - 发布检查清单，由代理填 `pass` / `fail` / `skip`
 
 ## 安装
@@ -106,7 +106,7 @@ About 描述和 topics 用这一份英文。GitHub 的 About 栏不是双语字�
 
 没有配置文件。代理从目标仓库读取项目名、读者、版权持有者和公开联系方式。若目标仓库没有公开联系方式，只链接 GitHub 所有者，不编造邮箱。不会编造个人姓名、电话或雇主，也不会把本仓库的联系方式抄过去。
 
-首次上架时，代理可改 README、补缺失的 `LICENSE`、`.gitignore`、`.github/workflows/ci.yml`、`docs/`、`llms.txt` 和 `.github/PUBLISH_CHECKLIST.md`。不改写历史。发布后可删除检查清单。
+首次上架时，代理可改 README、补缺失的 `LICENSE`、`.gitignore`、`.github/workflows/ci.yml`、`docs/` 和 `.github/PUBLISH_CHECKLIST.md`。不改写历史。发布后可删除检查清单。
 
 新项目默认许可证为 MIT。已有 `LICENSE` 保持不动，除非你明确要求更换。
 

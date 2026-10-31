@@ -3,7 +3,7 @@ name: github-launch
 description: >-
   Package a software project for public GitHub: bilingual README (English
   and zh-CN), About description and topics, LICENSE, GitHub Pages, minimal
-  CI, GEO/SEO (llms.txt, FAQ, headings), and a code-content review. Use
+  CI, GEO/SEO (FAQ, headings, title, meta), and a code-content review. Use
   when the user says "ship this to GitHub", "上架 GitHub", "准备开源",
   "publish to GitHub", or "open source this". Procedure only; it does not
   block git push.
@@ -51,7 +51,6 @@ Resolve the template root in order:
 | `README.md` | [README.md.tmpl](../../templates/README.md.tmpl) |
 | `README.zh-CN.md` | [README.zh-CN.md.tmpl](../../templates/README.zh-CN.md.tmpl) |
 | About text in the report | [ABOUT.txt](../../templates/ABOUT.txt) |
-| `llms.txt` and, if you add `docs/`, `docs/llms.txt` | [llms.txt.tmpl](../../templates/llms.txt.tmpl) |
 | `.github/workflows/ci.yml` | [ci.yml.tmpl](../../templates/.github/workflows/ci.yml.tmpl) |
 | `docs/index.md` or `docs/index.html` (one, not both) | [index.md.tmpl](../../templates/docs/index.md.tmpl) or [index.html.tmpl](../../templates/docs/index.html.tmpl) |
 | New MIT `LICENSE` | [LICENSE.MIT.txt](../../templates/LICENSE.MIT.txt) |
@@ -60,7 +59,7 @@ Resolve the template root in order:
 Placeholder tokens look like `{{PROJECT_NAME}}`: uppercase letters, digits, underscores. Replace every one, including tokens that expand into several lines. A GitHub Actions expression looks like `${{ hashFiles('package.json') }}`. Leave those in workflow files. After editing, search the target:
 
 ```bash
-rg -n '\{\{[A-Z0-9_]+\}\}' README.md README.zh-CN.md LICENSE llms.txt docs .github/PUBLISH_CHECKLIST.md || true
+rg -n '\{\{[A-Z0-9_]+\}\}' README.md README.zh-CN.md LICENSE docs .github/PUBLISH_CHECKLIST.md || true
 ```
 
 Any hit in those paths is unfinished. Do not run that pattern-delete over `*.yml`.
@@ -231,7 +230,7 @@ Use `docs/` on the default branch for a landing page or a few hand-written pages
 
 Write one entry point:
 
-- `docs/index.html` from [index.html.tmpl](../../templates/docs/index.html.tmpl) when the page should carry its own title, meta description, canonical URL, and Open Graph tags. Add an empty `docs/.nojekyll` so Jekyll does not rewrite the HTML. Keep a trailing slash on the homepage URL; the template joins it to `llms.txt`.
+- `docs/index.html` from [index.html.tmpl](../../templates/docs/index.html.tmpl) when the page should carry its own title, meta description, canonical URL, and Open Graph tags. Add an empty `docs/.nojekyll` so Jekyll does not rewrite the HTML.
 - `docs/index.md` from [index.md.tmpl](../../templates/docs/index.md.tmpl) when the repo already uses Jekyll or the default Pages theme is enough.
 
 Do not write both. `index.html` wins and the markdown file would be ignored.
@@ -254,7 +253,6 @@ Write so a search index and a language model quote the same facts.
 - The H1 is the product name. The first paragraph says what it is, who it is for, and the license. Scrapers cut the page short.
 - Use that same product noun in Features and in one FAQ answer. Do not stuff keywords.
 - FAQ headings are full questions.
-- Write `llms.txt` from [llms.txt.tmpl](../../templates/llms.txt.tmpl). H1, then a blockquote summary, then H2 sections of absolute links. If you added `docs/`, write the same body to `docs/llms.txt` so the site serves `/llms.txt`. Follow `https://llmstxt.org/`.
 - On `docs/index.html` set `<title>`, `meta name="description"` (160 characters or fewer), `link rel="canonical"`, `og:title`, `og:description`, and `og:url`. Use the About sentence for the meta description when it already states the product.
 - Add JSON-LD `@type` `SoftwareSourceCode` only with facts you can point at: name, description, `codeRepository`, license URL. Publisher is an Organization. No star ratings, no invented author name.
 
