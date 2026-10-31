@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{PROJECT_NAME}}</title>
+  <meta name="description" content="{{ABOUT_DESCRIPTION}}">
+  <link rel="canonical" href="{{HOMEPAGE_URL}}">
+  <meta name="robots" content="index,follow">
+  <meta property="og:title" content="{{PROJECT_NAME}}">
+  <meta property="og:description" content="{{ABOUT_DESCRIPTION}}">
+  <meta property="og:url" content="{{HOMEPAGE_URL}}">
+  <meta property="og:type" content="website">
+  <link rel="describedby" href="{{HOMEPAGE_URL}}llms.txt">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareSourceCode",
+    "name": "{{PROJECT_NAME}}",
+    "description": "{{ABOUT_DESCRIPTION}}",
+    "codeRepository": "{{REPO_URL}}",
+    "license": "{{LICENSE_URL}}",
+    "author": {
+      "@type": "Organization",
+      "name": "{{OWNER}}",
+      "url": "https://github.com/{{OWNER}}"
+    }
+  }
+  </script>
+  <style>
+    :root { color-scheme: light; --ink: #1a1916; --muted: #5c574e; --rule: #d9d3c7; --paper: #f6f4ef; --accent: #0e5c45; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font: 18px/1.55 Georgia, "Iowan Old Style", serif; }
+    main { max-width: 40rem; margin: 0 auto; padding: 4rem 1.25rem 5rem; }
+    h1 { font-size: 2.4rem; line-height: 1.1; margin: 0 0 0.8rem; }
+    a { color: var(--accent); }
+    p.muted, footer { color: var(--muted); font: 0.9rem/1.45 ui-sans-serif, system-ui, sans-serif; }
+    footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--rule); }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>{{PROJECT_NAME}}</h1>
+    <p>{{ONE_LINER}}</p>
+    <p><a href="{{REPO_URL}}">Source on GitHub</a> · <a href="llms.txt">llms.txt</a></p>
+    <footer>{{CONTACT_LINE}}</footer>
+  </main>
+</body>
+</html>

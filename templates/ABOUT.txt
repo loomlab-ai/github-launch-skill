@@ -1,0 +1,14 @@
+# GitHub About dialog: description, homepage, topics.
+# description is one line, 160 characters or fewer, no hashtags, no emoji.
+# topics: 5 to 10, lowercase, digits and hyphens, no spaces. GitHub allows 20 total.
+# Set homepage only after GitHub Pages returns that URL.
+# Do not copy example_* onto another repository.
+
+description: {{ABOUT_DESCRIPTION}}
+homepage: {{HOMEPAGE_URL}}
+topics: {{TOPICS}}
+
+# Example for loomlab-ai/github-launch-skill only.
+example_description: Agent Skill that launches your project onto GitHub: bilingual README, About, license, Pages, CI, and SEO.
+example_topics: agent-skills, github, readme, seo, cicd, open-source, cursor, claude
+example_homepage: https://loomlab-ai.github.io/github-launch-skill/
