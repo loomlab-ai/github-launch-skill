@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>github-launch-skill</title>
-  <meta name="description" content="Agent Skill that launches your project onto GitHub: bilingual README, About, license, Pages, CI, and SEO.">
+  <meta name="description" content="Agent Skill that packages a project for GitHub: bilingual README, About, license, CI, Pages, SEO.">
   <link rel="canonical" href="https://loomlab-ai.github.io/github-launch-skill/">
   <meta name="robots" content="index,follow">
   <meta property="og:title" content="github-launch-skill">
-  <meta property="og:description" content="Agent Skill that launches your project onto GitHub: bilingual README, About, license, Pages, CI, and SEO.">
+  <meta property="og:description" content="Agent Skill that packages a project for GitHub: bilingual README, About, license, CI, Pages, SEO.">
   <meta property="og:url" content="https://loomlab-ai.github.io/github-launch-skill/">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="en_US">
@@ -19,7 +19,7 @@
     "@context": "https://schema.org",
     "@type": "SoftwareSourceCode",
     "name": "github-launch-skill",
-    "description": "Agent Skill that launches your project onto GitHub: bilingual README, About, license, Pages, CI, and SEO.",
+    "description": "Agent Skill that packages a project for GitHub: bilingual README, About, license, CI, Pages, SEO.",
     "codeRepository": "https://github.com/loomlab-ai/github-launch-skill",
     "license": "https://github.com/loomlab-ai/github-launch-skill/blob/main/LICENSE",
     "programmingLanguage": "Markdown",
@@ -80,16 +80,16 @@
   <main>
     <p class="kicker">LoomLab</p>
     <h1>github-launch-skill</h1>
-    <p>Agent Skill that launches your project onto GitHub.</p>
-    <p class="zh" lang="zh-CN">把你的项目上架到 GitHub 的 Agent Skill。编码代理写好双语 README、About、许可证、CI 和 Pages 落地页，并交出检查清单。它不拦截 <code>git push</code>。</p>
-    <p>Say <code>ship this to GitHub</code>, <code>上架 GitHub</code>, or <code>准备开源</code>. The agent follows the skill and edits the target repository. This page does not turn GitHub Pages on. Enable it under Settings → Pages → Deploy from a branch → <code>/docs</code>.</p>
+    <p>An Agent Skill that packages a project for GitHub.</p>
+    <p class="zh" lang="zh-CN">用 Agent Skill 把项目上架到 GitHub。代理会写双语 README、About、许可证、CI 和 Pages 落地页，并填检查清单；不拦截 <code>git push</code>。</p>
+    <p>Say <code>ship this to GitHub</code>, <code>上架 GitHub</code>, or <code>准备开源</code>. The agent follows the skill and edits the target repository. This page does not enable GitHub Pages. Turn it on under Settings → Pages → Deploy from a branch → <code>/docs</code>.</p>
     <h2>What it writes</h2>
     <ul>
       <li>Project intake, then a review for secrets, personal data, dead demos, license headers, <code>.gitignore</code>, and large binaries</li>
       <li><code>README.md</code> and <code>README.zh-CN.md</code></li>
       <li>About description (160 characters or fewer) and 5–10 topics</li>
       <li>MIT by default; Apache-2.0 or AGPL-3.0 when you ask</li>
-      <li>A short GitHub Actions workflow, <code>llms.txt</code>, and this kind of landing page</li>
+      <li>A short GitHub Actions workflow, <code>llms.txt</code>, and a Pages landing like this one</li>
     </ul>
     <h2>Install</h2>
     <pre>git clone https://github.com/loomlab-ai/github-launch-skill.git

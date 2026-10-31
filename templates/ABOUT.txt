@@ -9,6 +9,6 @@ homepage: {{HOMEPAGE_URL}}
 topics: {{TOPICS}}
 
 # Example for loomlab-ai/github-launch-skill only.
-example_description: Agent Skill that launches your project onto GitHub: bilingual README, About, license, Pages, CI, and SEO.
+example_description: Agent Skill that packages a project for GitHub: bilingual README, About, license, CI, Pages, SEO.
 example_topics: agent-skills, github, readme, seo, cicd, open-source, cursor, claude
 example_homepage: https://loomlab-ai.github.io/github-launch-skill/
