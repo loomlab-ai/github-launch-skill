@@ -3,7 +3,8 @@ name: github-launch
 description: >-
   Package a software project for public GitHub: bilingual README (English
   and zh-CN), About description and topics, LICENSE, GitHub Pages, minimal
-  CI, GEO/SEO (FAQ, headings, title, meta), and a code-content review. Use
+  CI, GEO/SEO (stable headings, title, meta), a Chinese doc-lint pass,
+  and a code-content review. Use
   when the user says "ship this to GitHub", "上架 GitHub", "准备开源",
   "publish to GitHub", or "open source this". Procedure only; it does not
   block git push.
@@ -66,7 +67,7 @@ Any hit in those paths is unfinished. Do not run that pattern-delete over `*.yml
 
 Delete HTML comments that tell you how to fill a template. They are not part of the published file.
 
-Keep commands, URLs, flags, and version numbers identical in the English and Chinese READMEs. Translate the prose around them.
+Keep commands, URLs, flags, and version numbers identical in the English and Chinese READMEs. Translate the prose, then run the Chinese polish in step 3.
 
 ## Steps
 
@@ -145,17 +146,19 @@ List every tracked file at least 1 MB. Do not add a new file at least 5 MB unles
 
 ### 3. README
 
-Write `README.md` from [README.md.tmpl](../../templates/README.md.tmpl) and `README.zh-CN.md` from [README.zh-CN.md.tmpl](../../templates/README.zh-CN.md.tmpl) in the same edit.
+Write `README.md` from [README.md.tmpl](../../templates/README.md.tmpl) and `README.zh-CN.md` from [README.zh-CN.md.tmpl](../../templates/README.zh-CN.md.tmpl) in the same edit. Then polish the Chinese.
 
 Order:
 
 1. H1 is the product name people search for, not "Welcome" or "Introduction".
 2. One-liner: the first paragraph. What it is and who it is for.
-3. Purpose, Quick start, Features, Install, Usage, Configuration, FAQ, License, Contact.
+3. Purpose, Quick start, Features, Install, Usage, Configuration, License, Contact.
 
-English headings, exactly: `Purpose`, `Quick start`, `Features`, `Install`, `Usage`, `Configuration`, `FAQ`, `License`, `Contact`.
+English headings, exactly: `Purpose`, `Quick start`, `Features`, `Install`, `Usage`, `Configuration`, `License`, `Contact`.
 
-Chinese headings, exactly: `用途`, `快速开始`, `功能`, `安装`, `用法`, `配置`, `常见问题`, `许可证`, `联系`.
+Chinese headings, exactly: `用途`, `快速开始`, `功能`, `安装`, `用法`, `配置`, `许可证`, `联系`.
+
+Do not add an FAQ heading (`FAQ` or `常见问题`). Do not link to one.
 
 | Token | Write |
 | --- | --- |
@@ -166,11 +169,16 @@ Chinese headings, exactly: `用途`, `快速开始`, `功能`, `安装`, `用法
 | `{{INSTALL}}` / `{{INSTALL_ZH}}` | Real install commands for this stack. |
 | `{{USAGE}}` / `{{USAGE_ZH}}` | One working example. |
 | `{{CONFIGURATION}}` / `{{CONFIGURATION_ZH}}` | Env vars or flags. If there are none, say so. Keep the heading. |
-| `{{FAQ}}` / `{{FAQ_ZH}}` | At least three H3 questions a stranger would type, with short answers. |
 | `{{LICENSE_LINE}}` / `{{LICENSE_LINE_ZH}}` | License name, SPDX id, copyright, link to the file. |
 | `{{CONTACT}}` / `{{CONTACT_ZH}}` | Contacts the project already published, or contacts in the user message. If none, link the GitHub owner only. |
 
-If the user asked for English only, skip the Chinese file and mark that checklist row `skip`. The default is both files.
+If the user asked for English only, skip the Chinese file and mark the doc-lint checklist row `skip`. The default is both files.
+
+After both drafts exist, polish `README.zh-CN.md` and any other Chinese product or technical page this launch writes. If a `doc-lint` skill is available, load it for this pass. Do not copy that skill into this repository.
+
+- Cut redundancy, filler, and translationese. Keep the meaning.
+- Keep technical English terms, commands, URLs, flags, and version numbers identical to `README.md`.
+- Do not add sections to make the Chinese file longer.
 
 ### 4. About and topics
 
@@ -248,11 +256,10 @@ If the user said there should be no site, write nothing under `docs/` and mark t
 
 ### 8. GEO and SEO
 
-Write so a search index and a language model quote the same facts.
+Write so a search index and a language model quote the same facts. SEO is the stable headings from step 3, plus the title and Pages meta. Do not add an FAQ heading.
 
 - The H1 is the product name. The first paragraph says what it is, who it is for, and the license. Scrapers cut the page short.
-- Use that same product noun in Features and in one FAQ answer. Do not stuff keywords.
-- FAQ headings are full questions.
+- Use that same product noun in Features. Do not stuff keywords.
 - On `docs/index.html` set `<title>`, `meta name="description"` (160 characters or fewer), `link rel="canonical"`, `og:title`, `og:description`, and `og:url`. Use the About sentence for the meta description when it already states the product.
 - Add JSON-LD `@type` `SoftwareSourceCode` only with facts you can point at: name, description, `codeRepository`, license URL. Publisher is an Organization. No star ratings, no invented author name.
 
