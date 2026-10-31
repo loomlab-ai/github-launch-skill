@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>github-launch-skill</title>
+  <meta name="description" content="Agent Skill that launches your project onto GitHub: bilingual README, About, license, Pages, CI, and SEO.">
+  <link rel="canonical" href="https://loomlab-ai.github.io/github-launch-skill/">
+  <meta name="robots" content="index,follow">
+  <meta property="og:title" content="github-launch-skill">
+  <meta property="og:description" content="Agent Skill that launches your project onto GitHub: bilingual README, About, license, Pages, CI, and SEO.">
+  <meta property="og:url" content="https://loomlab-ai.github.io/github-launch-skill/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <link rel="describedby" href="https://loomlab-ai.github.io/github-launch-skill/llms.txt">
+  <link rel="alternate" type="text/markdown" href="https://github.com/loomlab-ai/github-launch-skill/raw/main/README.md">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareSourceCode",
+    "name": "github-launch-skill",
+    "description": "Agent Skill that launches your project onto GitHub: bilingual README, About, license, Pages, CI, and SEO.",
+    "codeRepository": "https://github.com/loomlab-ai/github-launch-skill",
+    "license": "https://github.com/loomlab-ai/github-launch-skill/blob/main/LICENSE",
+    "programmingLanguage": "Markdown",
+    "author": {
+      "@type": "Organization",
+      "name": "LoomLab",
+      "url": "https://github.com/loomlab-ai"
+    }
+  }
+  </script>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #1a1916;
+      --muted: #3f3c36;
+      --rule: #d9d3c7;
+      --paper: #f6f4ef;
+      --accent: #0e5c45;
+    }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font: 18px/1.55 Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+    }
+    main { max-width: 40rem; margin: 0 auto; padding: 4rem 1.25rem 5rem; }
+    p.kicker {
+      margin: 0;
+      color: var(--accent);
+      font: 0.78rem/1.2 ui-sans-serif, system-ui, sans-serif;
+      letter-spacing: 0.04em;
+    }
+    h1 { font-size: 2.5rem; line-height: 1.05; letter-spacing: -0.02em; margin: 0.35rem 0 0.9rem; }
+    h2 { font-size: 1.25rem; margin: 2rem 0 0.5rem; }
+    a { color: var(--accent); }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .zh { font-family: "Songti SC", "Noto Serif SC", "Source Han Serif SC", Georgia, serif; }
+    ul { padding-left: 1.2rem; }
+    li { margin: 0.25rem 0; }
+    pre {
+      background: #fff;
+      border: 1px solid var(--rule);
+      padding: 0.85rem 1rem;
+      overflow: auto;
+      font: 0.82rem/1.45 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.9em; }
+    footer {
+      margin-top: 3rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--rule);
+      color: var(--muted);
+      font: 0.9rem/1.45 ui-sans-serif, system-ui, sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="kicker">LoomLab</p>
+    <h1>github-launch-skill</h1>
+    <p>Agent Skill that launches your project onto GitHub.</p>
+    <p class="zh" lang="zh-CN">把你的项目上架到 GitHub 的 Agent Skill。编码代理写好双语 README、About、许可证、CI 和 Pages 落地页，并交出检查清单。它不拦截 <code>git push</code>。</p>
+    <p>Say <code>ship this to GitHub</code>, <code>上架 GitHub</code>, or <code>准备开源</code>. The agent follows the skill and edits the target repository. This page does not turn GitHub Pages on. Enable it under Settings → Pages → Deploy from a branch → <code>/docs</code>.</p>
+    <h2>What it writes</h2>
+    <ul>
+      <li>Project intake, then a review for secrets, personal data, dead demos, license headers, <code>.gitignore</code>, and large binaries</li>
+      <li><code>README.md</code> and <code>README.zh-CN.md</code></li>
+      <li>About description (160 characters or fewer) and 5–10 topics</li>
+      <li>MIT by default; Apache-2.0 or AGPL-3.0 when you ask</li>
+      <li>A short GitHub Actions workflow, <code>llms.txt</code>, and this kind of landing page</li>
+    </ul>
+    <h2>Install</h2>
+    <pre>git clone https://github.com/loomlab-ai/github-launch-skill.git
+mkdir -p .cursor/skills
+cp -R github-launch-skill/skills/github-launch .cursor/skills/github-launch</pre>
+    <p>
+      <a href="https://github.com/loomlab-ai/github-launch-skill">Repository</a>
+      · <a href="https://github.com/loomlab-ai/github-launch-skill/blob/main/README.md">English README</a>
+      · <a href="https://github.com/loomlab-ai/github-launch-skill/blob/main/README.zh-CN.md">中文说明</a>
+      · <a href="llms.txt">llms.txt</a>
+    </p>
+    <footer>
+      <a href="https://github.com/loomlab-ai">LoomLab</a>
+      · <a href="mailto:lofisuchat@gmail.com">lofisuchat@gmail.com</a>
+      · GitHub Sponsors
+      · <a href="https://x.com/su_lofi">X @su_lofi</a>
+      · <a href="https://github.com/loomlab-ai/github-launch-skill/blob/main/LICENSE">MIT</a>
+    </footer>
+  </main>
+</body>
+</html>

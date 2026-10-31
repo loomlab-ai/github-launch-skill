@@ -1,0 +1,19 @@
+# github-launch-skill
+
+> Agent Skill that launches your project onto GitHub: bilingual README, About, license, Pages, CI, and SEO.
+
+Agent Skill for Cursor, Claude Code, OpenCode, and Codex. It packages a repository before that repository is public: bilingual README, About text, LICENSE, CI, a GitHub Pages landing under /docs, and a code-content review. MIT License. The procedure does not block git push.
+
+Contact: https://github.com/loomlab-ai, lofisuchat@gmail.com, GitHub Sponsors, https://x.com/su_lofi.
+
+## Docs
+
+- [English README](https://github.com/loomlab-ai/github-launch-skill/blob/main/README.md): Install paths and what the skill covers
+- [简体中文 README](https://github.com/loomlab-ai/github-launch-skill/blob/main/README.zh-CN.md): Same facts in Chinese
+- [Skill](https://github.com/loomlab-ai/github-launch-skill/blob/main/skills/github-launch/SKILL.md): Steps the agent runs
+- [Checklist template](https://github.com/loomlab-ai/github-launch-skill/blob/main/templates/CHECKLIST.md): Items the agent fills before publish
+
+## Optional
+
+- [License](https://github.com/loomlab-ai/github-launch-skill/blob/main/LICENSE): MIT, Copyright (c) 2026 LoomLab
+- [Pages landing](https://loomlab-ai.github.io/github-launch-skill/): Homepage after GitHub Pages is enabled from /docs
