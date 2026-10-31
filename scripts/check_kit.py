@@ -43,7 +43,6 @@ EN_H2 = [
     "Install",
     "Usage",
     "Configuration",
-    "FAQ",
     "License",
     "Contact",
 ]
@@ -54,7 +53,6 @@ ZH_H2 = [
     "安装",
     "用法",
     "配置",
-    "常见问题",
     "许可证",
     "联系",
 ]
@@ -84,6 +82,15 @@ def fail(message: str) -> None:
 
 def read(rel: str) -> str:
     return (ROOT / rel).read_text(encoding="utf-8")
+
+
+def faq_headings(text: str) -> list[str]:
+    found = []
+    for line in text.splitlines():
+        stripped = line.strip()
+        if stripped in {"## FAQ", "## 常见问题"}:
+            found.append(stripped)
+    return found
 
 
 def headings(text: str, level: int) -> list[str]:
@@ -255,9 +262,14 @@ def main() -> int:
     ):
         if phrase not in description:
             fail(f"SKILL.md description missing {phrase!r}")
-    for phrase in ("soft skill", "git push", "FAQ", "160"):
+    for phrase in ("soft skill", "git push", "160", "doc-lint"):
         if phrase not in skill_text:
             fail(f"SKILL.md body missing {phrase!r}")
+    if "{{FAQ}}" in skill_text or "{{FAQ_ZH}}" in skill_text:
+        fail("SKILL.md must not require an FAQ placeholder")
+    for needle in ("At least three H3 questions", "FAQ headings are full questions"):
+        if needle in skill_text:
+            fail(f"SKILL.md still instructs an FAQ: {needle!r}")
     if "llms.txt" in skill_text:
         fail("SKILL.md must not require llms.txt")
     if "author: loomlab" not in meta.get("metadata", ""):
@@ -271,8 +283,11 @@ def main() -> int:
         fail(f"README.zh-CN.md H2 order is {headings(zh, 2)}")
     en_h3 = headings(en, 3)
     zh_h3 = headings(zh, 3)
-    if len(en_h3) < 3 or len(en_h3) != len(zh_h3):
-        fail(f"FAQ H3 counts differ: en={len(en_h3)} zh={len(zh_h3)}")
+    if len(en_h3) != len(zh_h3):
+        fail(f"H3 counts differ: en={len(en_h3)} zh={len(zh_h3)}")
+    for rel in ("README.md", "README.zh-CN.md"):
+        if faq_headings(read(rel)):
+            fail(f"{rel}: must not include an FAQ heading")
     if "does not block `git push`" not in en:
         fail("README.md does not say it does not block git push")
     if "不拦截 `git push`" not in zh:
@@ -383,6 +398,8 @@ def main() -> int:
                 fail("JSON-LD @type is not SoftwareSourceCode")
             if data.get("name") != "github-launch-skill":
                 fail("JSON-LD name is not github-launch-skill")
+    if re.search(r"FAQ|常见问题|faq-list|details\.faq", html):
+        fail("docs/index.html must not include an FAQ")
 
     workflow = read(".github/workflows/ci.yml")
     for needle in ("actions/checkout@v7", "permissions:", "python3 scripts/check_kit.py"):
@@ -414,7 +431,6 @@ def main() -> int:
             "{{INSTALL}}",
             "{{USAGE}}",
             "{{CONFIGURATION}}",
-            "{{FAQ}}",
             "{{LICENSE_LINE}}",
             "{{CONTACT}}",
         ],
@@ -430,7 +446,6 @@ def main() -> int:
             "{{INSTALL_ZH}}",
             "{{USAGE_ZH}}",
             "{{CONFIGURATION_ZH}}",
-            "{{FAQ_ZH}}",
             "{{LICENSE_LINE_ZH}}",
             "{{CONTACT_ZH}}",
         ],
@@ -446,6 +461,21 @@ def main() -> int:
     ):
         if token not in read(rel):
             fail(f"{rel}: missing {token}")
+
+    for rel in (
+        "templates/README.md.tmpl",
+        "templates/README.zh-CN.md.tmpl",
+        "templates/CHECKLIST.md",
+        "skills/github-launch/SKILL.md",
+    ):
+        text = read(rel)
+        if faq_headings(text) or "{{FAQ}}" in text or "{{FAQ_ZH}}" in text:
+            fail(f"{rel}: must not include an FAQ section")
+    checklist = read("templates/CHECKLIST.md")
+    if "doc-lint" not in checklist:
+        fail("templates/CHECKLIST.md must include the doc-lint pass")
+    if "FAQ and product noun" in checklist:
+        fail("templates/CHECKLIST.md still requires an FAQ row")
 
     template_files = files_under(TEMPLATES)
     asset_files = files_under(ASSETS)

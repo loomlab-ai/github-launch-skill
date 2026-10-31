@@ -368,44 +368,6 @@
       .card.tone-b .card-icon { color: var(--hands); }
       .card.tone-c .card-icon { color: var(--session); }
 
-      /* ─── FAQ details ─── */
-      .faq-list { margin: 8px 0 0; }
-      details.faq {
-        border: 1px solid var(--rule);
-        background: #fff;
-        margin-bottom: 8px;
-      }
-      details.faq summary {
-        cursor: pointer;
-        list-style: none;
-        padding: 12px 14px;
-        font-weight: 600;
-        font-size: 15px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        user-select: none;
-      }
-      details.faq summary::-webkit-details-marker { display: none; }
-      details.faq summary::before {
-        content: "+";
-        font-family: ui-monospace, Menlo, monospace;
-        font-size: 12px;
-        color: var(--accent);
-        width: 14px;
-        flex-shrink: 0;
-      }
-      details.faq[open] summary::before { content: "−"; }
-      details.faq[open] summary {
-        border-bottom: 1px solid var(--rule-soft);
-      }
-      details.faq .faq-body {
-        padding: 12px 14px 14px;
-        font-size: 14.5px;
-        color: var(--ink-soft);
-      }
-      details.faq .faq-body p { margin-bottom: 0; }
-
       /* ─── Buttons ─── */
       .btn {
         font-family:
@@ -550,7 +512,6 @@
       html.dark .callout,
       html.dark .card,
       html.dark figure,
-      html.dark details.faq,
       html.dark .doc-meta span { background: #1f1f1f; }
       html.dark figcaption { background: #181818; }
       html.dark .copy-btn { background: #1f1f1f; }
@@ -609,7 +570,7 @@ cp -R github-launch-skill/skills/github-launch .cursor/skills/github-launch</cod
           <div class="card tone-a">
             <div class="card-icon">01 · INTAKE</div>
             <div class="card-name">项目信息</div>
-            <div class="card-desc">收集仓库类型、读者、语言。</div>
+            <div class="card-desc">收集仓库类型、使用对象、语言。</div>
           </div>
           <div class="card tone-a">
             <div class="card-icon">02 · AUDIT</div>
@@ -619,7 +580,7 @@ cp -R github-launch-skill/skills/github-launch .cursor/skills/github-launch</cod
           <div class="card tone-a">
             <div class="card-icon">03 · README</div>
             <div class="card-name">双语 README</div>
-            <div class="card-desc">结构相同、事实一致的 <code>README.md</code> 与 <code>README.zh-CN.md</code>。</div>
+            <div class="card-desc">章节、命令、版本号相同。中文稿再做 doc-lint，删冗余和翻译腔。</div>
           </div>
           <div class="card tone-c">
             <div class="card-icon">04 · ABOUT</div>
@@ -644,7 +605,7 @@ cp -R github-launch-skill/skills/github-launch .cursor/skills/github-launch</cod
           <div class="card tone-b">
             <div class="card-icon">08 · SEO</div>
             <div class="card-name">GEO 与 SEO</div>
-            <div class="card-desc">稳定标题、FAQ、Pages meta。</div>
+            <div class="card-desc">稳定标题和 Pages meta。</div>
           </div>
           <div class="card tone-b">
             <div class="card-icon">09 · CHECK</div>
@@ -711,7 +672,7 @@ cp -R github-launch-skill/skills/github-launch .agents/skills/</code></pre>
         <h2><span class="num">05</span>用法</h2>
         <ol>
           <li>安装技能。</li>
-          <li>打开要发布的项目。对本项目执行步骤；除非你在改本工具仓库，否则不要对它执行。</li>
+          <li>打开要发布的项目，在该项目里执行。只有正在修改本工具仓库时，才对本仓库执行。</li>
           <li>说：<code>ship this to GitHub</code>、<code>上架 GitHub</code> 或 <code>准备开源</code>。</li>
           <li>查看 diff 与 <code>.github/PUBLISH_CHECKLIST.md</code>。代理按 <code>skills/github-launch/SKILL.md</code> 和 <code>templates/</code> 下的模板执行。</li>
           <li>密钥检查通过、且你希望分支出现在 GitHub 上时再推送。本仓库没有拒绝 <code>git push</code> 的钩子。</li>

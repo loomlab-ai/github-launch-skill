@@ -19,5 +19,6 @@ Report from the `github-launch` skill. Status is `pass`, `fail`, or `skip`. This
 | CI workflow matches the stack | TODO | |
 | Pages decision recorded; the agent did not enable Pages | TODO | |
 | Homepage URL recorded; set only after the site loads | TODO | {{HOMEPAGE_URL}} |
-| FAQ and product noun present | TODO | |
+| Product noun in the H1 and Features; stable headings and Pages meta; no FAQ section | TODO | |
+| doc-lint pass on README.zh-CN.md and other Chinese docs this launch wrote | TODO | |
 | Push | TODO | not run unless the user asked and the secret scan passed |
