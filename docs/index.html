@@ -1,113 +1,674 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>github-launch-skill</title>
-  <meta name="description" content="Agent Skill that packages a project for GitHub: bilingual README, About, license, CI, Pages, SEO.">
-  <link rel="canonical" href="https://loomlab-ai.github.io/github-launch-skill/">
-  <meta name="robots" content="index,follow">
-  <meta property="og:title" content="github-launch-skill">
-  <meta property="og:description" content="Agent Skill that packages a project for GitHub: bilingual README, About, license, CI, Pages, SEO.">
-  <meta property="og:url" content="https://loomlab-ai.github.io/github-launch-skill/">
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="en_US">
-  <link rel="describedby" href="https://loomlab-ai.github.io/github-launch-skill/llms.txt">
-  <link rel="alternate" type="text/markdown" href="https://github.com/loomlab-ai/github-launch-skill/raw/main/README.md">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareSourceCode",
-    "name": "github-launch-skill",
-    "description": "Agent Skill that packages a project for GitHub: bilingual README, About, license, CI, Pages, SEO.",
-    "codeRepository": "https://github.com/loomlab-ai/github-launch-skill",
-    "license": "https://github.com/loomlab-ai/github-launch-skill/blob/main/LICENSE",
-    "programmingLanguage": "Markdown",
-    "author": {
-      "@type": "Organization",
-      "name": "LoomLab",
-      "url": "https://github.com/loomlab-ai"
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>github-launch-skill · LoomLab</title>
+    <meta name="description" content="Agent Skill that packages a project for GitHub: bilingual README, About, license, CI, Pages, SEO." />
+    <link rel="canonical" href="https://loomlab-ai.github.io/github-launch-skill/" />
+    <meta name="robots" content="index,follow" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="github-launch-skill · LoomLab" />
+    <meta property="og:description" content="Agent Skill that packages a project for GitHub: bilingual README, About, license, CI, Pages, SEO." />
+    <meta property="og:url" content="https://loomlab-ai.github.io/github-launch-skill/" />
+    <meta property="og:site_name" content="LoomLab" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="github-launch-skill · LoomLab" />
+    <meta name="twitter:description" content="Agent Skill that packages a project for GitHub: bilingual README, About, license, CI, Pages, SEO." />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareSourceCode",
+      "name": "github-launch-skill",
+      "description": "Agent Skill that packages a project for GitHub: bilingual README, About, license, CI, Pages, SEO.",
+      "codeRepository": "https://github.com/loomlab-ai/github-launch-skill",
+      "license": "https://github.com/loomlab-ai/github-launch-skill/blob/main/LICENSE",
+      "programmingLanguage": "Markdown",
+      "author": {
+        "@type": "Organization",
+        "name": "LoomLab",
+        "url": "https://github.com/loomlab-ai"
+      }
     }
-  }
-  </script>
-  <style>
-    :root {
-      color-scheme: light;
-      --ink: #1a1916;
-      --muted: #3f3c36;
-      --rule: #d9d3c7;
-      --paper: #f6f4ef;
-      --accent: #0e5c45;
-    }
-    body {
-      margin: 0;
-      background: var(--paper);
-      color: var(--ink);
-      font: 18px/1.55 Georgia, "Iowan Old Style", "Palatino Linotype", serif;
-    }
-    main { max-width: 40rem; margin: 0 auto; padding: 4rem 1.25rem 5rem; }
-    p.kicker {
-      margin: 0;
-      color: var(--accent);
-      font: 0.78rem/1.2 ui-sans-serif, system-ui, sans-serif;
-      letter-spacing: 0.04em;
-    }
-    h1 { font-size: 2.5rem; line-height: 1.05; letter-spacing: -0.02em; margin: 0.35rem 0 0.9rem; }
-    h2 { font-size: 1.25rem; margin: 2rem 0 0.5rem; }
-    a { color: var(--accent); }
-    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-    .zh { font-family: "Songti SC", "Noto Serif SC", "Source Han Serif SC", Georgia, serif; }
-    ul { padding-left: 1.2rem; }
-    li { margin: 0.25rem 0; }
-    pre {
-      background: #fff;
-      border: 1px solid var(--rule);
-      padding: 0.85rem 1rem;
-      overflow: auto;
-      font: 0.82rem/1.45 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    }
-    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.9em; }
-    footer {
-      margin-top: 3rem;
-      padding-top: 1rem;
-      border-top: 1px solid var(--rule);
-      color: var(--muted);
-      font: 0.9rem/1.45 ui-sans-serif, system-ui, sans-serif;
-    }
-  </style>
-</head>
-<body>
-  <main>
-    <p class="kicker">LoomLab</p>
-    <h1>github-launch-skill</h1>
-    <p>An Agent Skill that packages a project for GitHub.</p>
-    <p class="zh" lang="zh-CN">用 Agent Skill 把项目上架到 GitHub。代理会写双语 README、About、许可证、CI 和 Pages 落地页，并填检查清单；不拦截 <code>git push</code>。</p>
-    <p>Say <code>ship this to GitHub</code>, <code>上架 GitHub</code>, or <code>准备开源</code>. The agent follows the skill and edits the target repository. This page does not enable GitHub Pages. Turn it on under Settings → Pages → Deploy from a branch → <code>/docs</code>.</p>
-    <h2>What it writes</h2>
-    <ul>
-      <li>Project intake, then a review for secrets, personal data, dead demos, license headers, <code>.gitignore</code>, and large binaries</li>
-      <li><code>README.md</code> and <code>README.zh-CN.md</code></li>
-      <li>About description (160 characters or fewer) and 5–10 topics</li>
-      <li>MIT by default; Apache-2.0 or AGPL-3.0 when you ask</li>
-      <li>A short GitHub Actions workflow, <code>llms.txt</code>, and a Pages landing like this one</li>
-    </ul>
-    <h2>Install</h2>
-    <pre>git clone https://github.com/loomlab-ai/github-launch-skill.git
+    </script>
+    <style>
+      :root {
+        --paper: #f7f7f5;
+        --paper-edge: #efefea;
+        --ink: #1a1a1a;
+        --ink-soft: #4a4a4a;
+        --ink-faint: #7a7a7a;
+        --rule: #d8d8d2;
+        --rule-soft: #e8e8e2;
+        --accent: #6f9bb8;
+        --accent-soft: #d9e6f0;
+        --accent-faint: #eef4f8;
+        --warn: #b88a4a;
+        --warn-soft: #f5ecdc;
+        --danger: #a05050;
+        --code-bg: #ececea;
+
+        /* Semantic palette for three-layer cards. Rename freely
+           (e.g. --layer-a / --layer-b / --layer-c) when the three
+           layers in the doc are not brain/hands/session. */
+        --brain: #6f9bb8;
+        --brain-bg: #eef4f8;
+        --hands: #b88a4a;
+        --hands-bg: #f5ecdc;
+        --session: #6b7560;
+        --session-bg: #ecede5;
+      }
+
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html { font-size: 16px; }
+
+      /* Font stacks include both English serifs/monospace and CJK
+         fallbacks so the same template renders cleanly for English
+         or Chinese source content. */
+      body {
+        font-family:
+          ui-serif, "Charter", "Iowan Old Style", "Source Serif Pro", Georgia,
+          "Songti SC", "Source Han Serif SC", "Noto Serif CJK SC", serif;
+        background: var(--paper);
+        color: var(--ink);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        padding: 64px 24px 96px;
+      }
+
+      .doc { max-width: 840px; margin: 0 auto; }
+
+      /* ─── Header ─── */
+      .doc-header {
+        border-bottom: 1px solid var(--rule);
+        padding-bottom: 28px;
+        margin-bottom: 48px;
+      }
+      .doc-eyebrow {
+        font-family:
+          ui-monospace, "SF Mono", Menlo,
+          "PingFang SC", "Hiragino Sans GB", monospace;
+        font-size: 11px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--ink-faint);
+        margin-bottom: 14px;
+      }
+      .doc-title {
+        font-family:
+          ui-serif, Charter, Georgia,
+          "Songti SC", "Source Han Serif SC", serif;
+        font-size: 34px;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+      }
+      .doc-subtitle {
+        font-size: 16px;
+        color: var(--ink-soft);
+        margin-top: 10px;
+        font-style: italic;
+      }
+      .doc-meta {
+        font-family:
+          ui-monospace, Menlo,
+          "PingFang SC", "Hiragino Sans GB", monospace;
+        font-size: 11px;
+        color: var(--ink-faint);
+        margin-top: 18px;
+        display: flex;
+        gap: 24px;
+      }
+
+      /* ─── TL;DR ─── */
+      .tldr {
+        background: var(--accent-faint);
+        border-left: 2px solid var(--accent);
+        padding: 20px 24px;
+        margin-bottom: 56px;
+        font-size: 15px;
+      }
+      .tldr-label {
+        font-family:
+          ui-monospace, Menlo,
+          "PingFang SC", "Hiragino Sans GB", monospace;
+        font-size: 11px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 8px;
+        font-weight: 600;
+      }
+
+      /* ─── Sections ─── */
+      section { margin-bottom: 56px; }
+      h2 {
+        font-size: 22px;
+        font-weight: 600;
+        letter-spacing: -0.005em;
+        margin-bottom: 18px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--rule);
+      }
+      h2 .num {
+        font-family:
+          ui-monospace, Menlo,
+          "PingFang SC", "Hiragino Sans GB", monospace;
+        font-size: 12px;
+        color: var(--ink-faint);
+        font-weight: 500;
+        margin-right: 14px;
+        letter-spacing: 0.05em;
+      }
+      h3 {
+        font-size: 16px;
+        font-weight: 600;
+        margin: 28px 0 10px;
+      }
+      h4 {
+        font-size: 14px;
+        font-weight: 600;
+        margin: 22px 0 8px;
+      }
+      p { margin-bottom: 14px; }
+      p + p { margin-top: -2px; }
+      a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-soft); }
+      a:hover { border-bottom-color: var(--accent); }
+      code {
+        font-family:
+          ui-monospace, "SF Mono", Menlo,
+          "PingFang SC", "Hiragino Sans GB", monospace;
+        font-size: 13px;
+        background: var(--code-bg);
+        padding: 1px 5px;
+        border-radius: 2px;
+      }
+      pre {
+        font-family:
+          ui-monospace, Menlo,
+          "PingFang SC", "Hiragino Sans GB", monospace;
+        font-size: 12.5px;
+        line-height: 1.55;
+        background: var(--code-bg);
+        padding: 14px 18px;
+        margin: 14px 0 18px;
+        overflow-x: auto;
+        border-left: 2px solid var(--rule);
+      }
+      pre code { background: transparent; padding: 0; }
+      ul, ol { margin: 8px 0 16px 22px; }
+      li { margin-bottom: 6px; }
+      strong { font-weight: 600; }
+      em { color: var(--ink-soft); }
+      blockquote {
+        border-left: 2px solid var(--rule);
+        padding: 4px 0 4px 18px;
+        margin: 14px 0 18px;
+        color: var(--ink-soft);
+        font-style: italic;
+      }
+
+      /* ─── Tables ─── */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 14px 0 18px;
+        font-size: 14px;
+      }
+      th, td {
+        text-align: left;
+        padding: 10px 12px;
+        border-bottom: 1px solid var(--rule-soft);
+        vertical-align: top;
+      }
+      th {
+        font-weight: 600;
+        font-family:
+          ui-sans-serif, system-ui,
+          "PingFang SC", "Hiragino Sans GB", sans-serif;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--ink-faint);
+        border-bottom: 1px solid var(--rule);
+      }
+      tbody tr:hover { background: rgba(0,0,0,0.015); }
+      td.num {
+        font-family:
+          ui-monospace, Menlo,
+          "PingFang SC", "Hiragino Sans GB", monospace;
+        font-size: 13px;
+      }
+      td.accent { color: var(--accent); font-weight: 500; }
+
+      /* ─── Callouts ─── */
+      .callout {
+        border: 1px solid var(--rule);
+        background: #fff;
+        padding: 16px 18px;
+        margin: 16px 0 20px;
+      }
+      .callout.warn {
+        border-color: #e6d4a8;
+        background: var(--warn-soft);
+      }
+      .callout.cite {
+        border-left: 2px solid var(--accent);
+        border-top: none; border-right: none; border-bottom: none;
+        background: var(--accent-faint);
+        padding-left: 22px;
+        font-style: italic;
+      }
+      .callout-label {
+        font-family:
+          ui-monospace, Menlo,
+          "PingFang SC", "Hiragino Sans GB", monospace;
+        font-size: 10.5px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--ink-faint);
+        margin-bottom: 8px;
+        font-weight: 600;
+      }
+      .callout.warn .callout-label { color: var(--warn); }
+      .cite-source {
+        font-style: normal;
+        font-size: 12px;
+        color: var(--ink-faint);
+        margin-top: 10px;
+        font-family:
+          ui-monospace, Menlo,
+          "PingFang SC", "Hiragino Sans GB", monospace;
+      }
+
+      /* ─── Figure / Diagram ─── */
+      figure {
+        margin: 28px 0 32px;
+        border: 1px solid var(--rule);
+        background: #fff;
+      }
+      figure svg { display: block; width: 100%; height: auto; }
+      figure img { display: block; width: 100%; height: auto; }
+      figcaption {
+        font-family:
+          ui-monospace, Menlo,
+          "PingFang SC", "Hiragino Sans GB", monospace;
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ink-faint);
+        padding: 10px 16px;
+        border-top: 1px solid var(--rule-soft);
+        background: var(--paper-edge);
+      }
+      figcaption .fig-num {
+        color: var(--accent);
+        margin-right: 10px;
+        font-weight: 600;
+      }
+
+      /* ─── N-column concept cards ─── */
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+        margin: 20px 0 18px;
+      }
+      .cards.cols-2 { grid-template-columns: repeat(2, 1fr); }
+      .cards.cols-4 { grid-template-columns: repeat(4, 1fr); }
+      .card {
+        border: 1px solid var(--rule);
+        background: #fff;
+        padding: 16px 16px 14px;
+      }
+      .card-icon {
+        font-family:
+          ui-monospace, Menlo,
+          "PingFang SC", "Hiragino Sans GB", monospace;
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: var(--accent);
+      }
+      .card-name {
+        font-family:
+          ui-serif, Charter, Georgia,
+          "Songti SC", "Source Han Serif SC", serif;
+        font-size: 17px;
+        font-weight: 600;
+        margin-bottom: 6px;
+      }
+      .card-where {
+        font-size: 12px;
+        color: var(--ink-faint);
+        font-style: italic;
+        margin-bottom: 10px;
+      }
+      .card-desc { font-size: 13px; color: var(--ink-soft); line-height: 1.5; }
+
+      /* tone variants for cards */
+      .card.tone-a .card-icon { color: var(--brain); }
+      .card.tone-b .card-icon { color: var(--hands); }
+      .card.tone-c .card-icon { color: var(--session); }
+
+      /* ─── Buttons / Inputs (for interactive sections) ─── */
+      .btn {
+        font-family:
+          ui-monospace, Menlo,
+          "PingFang SC", "Hiragino Sans GB", monospace;
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 8px 14px;
+        background: #fff;
+        color: var(--ink);
+        border: 1px solid var(--rule);
+        cursor: pointer;
+        transition: background 0.15s;
+      }
+      .btn:hover { background: var(--paper-edge); }
+      .btn.primary {
+        background: var(--accent);
+        color: #fff;
+        border-color: var(--accent);
+      }
+      .btn.primary:hover { background: #5a87a4; }
+
+      input[type="text"], input[type="email"], textarea, select {
+        font-family:
+          ui-serif, Charter, Georgia,
+          "Songti SC", "Source Han Serif SC", serif;
+        font-size: 14px;
+        padding: 8px 12px;
+        background: #fff;
+        border: 1px solid var(--rule);
+        color: var(--ink);
+        width: 100%;
+        margin-bottom: 10px;
+      }
+      input:focus, textarea:focus, select:focus {
+        outline: none;
+        border-color: var(--accent);
+      }
+      label {
+        font-family:
+          ui-monospace, Menlo,
+          "PingFang SC", "Hiragino Sans GB", monospace;
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ink-faint);
+        display: block;
+        margin-bottom: 4px;
+      }
+
+      /* ─── Footer ─── */
+      footer {
+        margin-top: 80px;
+        padding-top: 24px;
+        border-top: 1px solid var(--rule);
+        font-size: 12px;
+        color: var(--ink-faint);
+      }
+      footer h4 {
+        font-size: 11px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        font-family:
+          ui-monospace, Menlo,
+          "PingFang SC", "Hiragino Sans GB", monospace;
+        margin-bottom: 10px;
+        color: var(--ink-soft);
+      }
+      footer ul { list-style: none; margin-left: 0; }
+      footer li { margin-bottom: 4px; }
+
+      .mascot {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        background: var(--accent);
+        margin-right: 8px;
+        vertical-align: middle;
+      }
+
+      @media (max-width: 720px) {
+        body { padding: 32px 16px 64px; }
+        .doc-title { font-size: 26px; }
+        .cards, .cards.cols-2, .cards.cols-4 { grid-template-columns: 1fr; }
+        .doc-meta { flex-wrap: wrap; gap: 12px; }
+      }
+
+    </style>
+  </head>
+  <body>
+    <article class="doc">
+
+      <header class="doc-header">
+        <div class="doc-eyebrow"><span class="mascot"></span>LoomLab · Agent Skill</div>
+        <h1 class="doc-title">github-launch-skill</h1>
+        <p class="doc-subtitle">用 Agent Skill 把项目上架到 GitHub</p>
+        <div class="doc-meta">
+          <span>STATUS · PUBLIC</span>
+          <span>DATE · 2026-10-31</span>
+          <span>LICENSE · MIT</span>
+        </div>
+      </header>
+
+      <div class="tldr">
+        <div class="tldr-label">TL;DR</div>
+        用 Agent Skill 把项目上架到 GitHub。对代理说「ship this to GitHub」「上架 GitHub」或「准备开源」即可。代理会写双语 README、About、许可证、CI、Pages 落地页和检查清单；不拦截 <code>git push</code>，也不会替你打开 Pages。
+      </div>
+
+      <section>
+        <h2><span class="num">01</span>用途</h2>
+        <p>别人打开公开仓库，先看第一屏：项目是什么、怎么跑、许可证、是否有人维护。搜索引擎和语言模型也会引用这一屏。本技能在公开前完成打包：直接写文件并填检查清单，不只给建议。</p>
+      </section>
+
+      <section>
+        <h2><span class="num">02</span>快速开始</h2>
+        <pre><code>git clone https://github.com/loomlab-ai/github-launch-skill.git
 mkdir -p .cursor/skills
-cp -R github-launch-skill/skills/github-launch .cursor/skills/github-launch</pre>
-    <p>
-      <a href="https://github.com/loomlab-ai/github-launch-skill">Repository</a>
-      · <a href="https://github.com/loomlab-ai/github-launch-skill/blob/main/README.md">English README</a>
-      · <a href="https://github.com/loomlab-ai/github-launch-skill/blob/main/README.zh-CN.md">中文说明</a>
-      · <a href="llms.txt">llms.txt</a>
-    </p>
-    <footer>
-      <a href="https://github.com/loomlab-ai">LoomLab</a>
-      · <a href="mailto:lofisuchat@gmail.com">lofisuchat@gmail.com</a>
-      · GitHub Sponsors
-      · <a href="https://x.com/su_lofi">X @su_lofi</a>
-      · <a href="https://github.com/loomlab-ai/github-launch-skill/blob/main/LICENSE">MIT</a>
-    </footer>
-  </main>
-</body>
+cp -R github-launch-skill/skills/github-launch .cursor/skills/github-launch</code></pre>
+        <p>打开要发布的项目，对代理说：</p>
+        <pre><code>ship this to GitHub</code></pre>
+        <p>其他代理和用户目录下的路径见「安装」。步骤见仓库内 <code>skills/github-launch/SKILL.md</code>。</p>
+      </section>
+
+      <section>
+        <h2><span class="num">03</span>功能</h2>
+        <ul>
+          <li><strong>项目信息。</strong>收集仓库类型、读者、语言。</li>
+          <li><strong>内容审查。</strong>密钥、个人隐私、失效演示、许可证头、<code>.gitignore</code>、大体积二进制。</li>
+          <li><strong>双语 README。</strong>写出结构相同、事实一致的 <code>README.md</code>（英文）与 <code>README.zh-CN.md</code>。</li>
+          <li><strong>About 与 topics。</strong>GitHub About（不超过 160 个字符）和 5–10 个 topics。</li>
+          <li><strong>许可证。</strong>默认 MIT；需要专利授权用 Apache-2.0，需要网络 copyleft 用 AGPL-3.0。</li>
+          <li><strong>CI。</strong>添加尽量短的 GitHub Actions 工作流（lint、测试或文档检查）。</li>
+          <li><strong>Pages。</strong>准备 <code>/docs</code> 下的 GitHub Pages，并写明在 Settings 里如何打开（技能不会替你打开 Pages）。</li>
+          <li><strong>GEO 与 SEO。</strong>稳定标题、FAQ、<code>llms.txt</code>、Pages meta。</li>
+          <li><strong>检查清单。</strong>由代理填 <code>pass</code> / <code>fail</code> / <code>skip</code>。</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2><span class="num">04</span>安装</h2>
+        <p>把 <code>skills/github-launch/</code> 复制到代理已在读取的技能目录。该目录内的 <code>assets/</code> 与仓库根目录 <code>templates/</code> 内容相同，复制技能文件夹即可。若要从仓库根目录读 <code>templates/</code>，再克隆整个仓库。</p>
+        <table>
+          <thead>
+            <tr>
+              <th>代理</th>
+              <th>当前项目</th>
+              <th>所有项目</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Cursor</strong></td>
+              <td><code>.cursor/skills/</code> 或 <code>.agents/skills/</code></td>
+              <td><code>~/.cursor/skills/</code> 或 <code>~/.agents/skills/</code></td>
+            </tr>
+            <tr>
+              <td><strong>Claude Code</strong></td>
+              <td><code>.claude/skills/</code></td>
+              <td><code>~/.claude/skills/</code></td>
+            </tr>
+            <tr>
+              <td><strong>OpenCode</strong></td>
+              <td><code>.opencode/skills/</code> 或 <code>.agents/skills/</code></td>
+              <td><code>~/.config/opencode/skills/</code> 或 <code>~/.agents/skills/</code></td>
+            </tr>
+            <tr>
+              <td><strong>Codex</strong></td>
+              <td><code>.agents/skills/</code></td>
+              <td><code>~/.agents/skills/</code></td>
+            </tr>
+          </tbody>
+        </table>
+        <p>Cursor 还会加载 <code>.claude/skills/</code>、<code>.codex/skills/</code>，以及主目录下的同名目录。如果 Codex 没有列出这个技能，把同一文件夹再复制到 <code>~/.codex/skills/</code>。</p>
+        <pre><code>git clone https://github.com/loomlab-ai/github-launch-skill.git
+
+mkdir -p .cursor/skills
+cp -R github-launch-skill/skills/github-launch .cursor/skills/
+
+mkdir -p .claude/skills
+cp -R github-launch-skill/skills/github-launch .claude/skills/
+
+mkdir -p .opencode/skills
+cp -R github-launch-skill/skills/github-launch .opencode/skills/
+
+mkdir -p .agents/skills
+cp -R github-launch-skill/skills/github-launch .agents/skills/</code></pre>
+        <p>技能未出现时，重开一次会话。用自然语言触发，无需斜杠命令。</p>
+      </section>
+
+      <section>
+        <h2><span class="num">05</span>用法</h2>
+        <ol>
+          <li>安装技能。</li>
+          <li>打开要发布的项目。对本项目执行步骤；除非你在改本工具仓库，否则不要对它执行。</li>
+          <li>说：<code>ship this to GitHub</code>、<code>上架 GitHub</code> 或 <code>准备开源</code>。</li>
+          <li>查看 diff 与 <code>.github/PUBLISH_CHECKLIST.md</code>。代理按 <code>skills/github-launch/SKILL.md</code> 和 <code>templates/</code> 下的模板执行。</li>
+          <li>密钥检查通过、且你希望分支出现在 GitHub 上时再推送。本仓库没有拒绝 <code>git push</code> 的钩子。</li>
+        </ol>
+
+        <div class="callout warn">
+          <div class="callout-label">CAUTION</div>
+          本技能不拦截 <code>git push</code>；也不会替你打开 GitHub Pages。Pages 需自行打开：Settings → Pages → Deploy from a branch → <code>/docs</code>。
+        </div>
+
+        <figure>
+          <svg viewBox="0 0 760 220" xmlns="http://www.w3.org/2000/svg"
+               font-family="ui-monospace, Menlo, monospace" font-size="12">
+            <rect width="760" height="220" fill="#fff"/>
+            <defs>
+              <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5"
+                      markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="#6f9bb8"/>
+              </marker>
+            </defs>
+
+            <!-- 1 Ask -->
+            <g>
+              <rect x="24" y="70" width="120" height="80" fill="#eef4f8" stroke="#6f9bb8" stroke-width="1.4"/>
+              <text x="34" y="92" fill="#6f9bb8" font-weight="600" letter-spacing="0.08em" font-size="10">01 ASK</text>
+              <text x="34" y="114" fill="#4a4a4a" font-size="11">触发上架</text>
+              <text x="34" y="132" fill="#7a7a7a" font-size="10">ship / 上架</text>
+            </g>
+
+            <!-- 2 Intake -->
+            <g>
+              <rect x="168" y="70" width="120" height="80" fill="#fff" stroke="#6f9bb8" stroke-width="1.4"/>
+              <text x="178" y="92" fill="#6f9bb8" font-weight="600" letter-spacing="0.08em" font-size="10">02 INTAKE</text>
+              <text x="178" y="114" fill="#4a4a4a" font-size="11">收集与审查</text>
+              <text x="178" y="132" fill="#7a7a7a" font-size="10">secrets / 隐私</text>
+            </g>
+
+            <!-- 3 Write -->
+            <g>
+              <rect x="312" y="70" width="120" height="80" fill="#fff" stroke="#6f9bb8" stroke-width="1.4"/>
+              <text x="322" y="92" fill="#6f9bb8" font-weight="600" letter-spacing="0.08em" font-size="10">03 WRITE</text>
+              <text x="322" y="114" fill="#4a4a4a" font-size="11">写出文件</text>
+              <text x="322" y="132" fill="#7a7a7a" font-size="10">README / CI</text>
+            </g>
+
+            <!-- 4 Checklist -->
+            <g>
+              <rect x="456" y="70" width="120" height="80" fill="#ecede5" stroke="#6b7560" stroke-width="1.4"/>
+              <text x="466" y="92" fill="#5a5a3a" font-weight="600" letter-spacing="0.08em" font-size="10">04 CHECK</text>
+              <text x="466" y="114" fill="#4a4a4a" font-size="11">检查清单</text>
+              <text x="466" y="132" fill="#7a7a7a" font-size="10">pass / fail</text>
+            </g>
+
+            <!-- 5 You -->
+            <g>
+              <rect x="600" y="70" width="136" height="80" fill="#f5ecdc" stroke="#b88a4a" stroke-width="1.4"/>
+              <text x="610" y="92" fill="#7a6420" font-weight="600" letter-spacing="0.08em" font-size="10">05 YOU</text>
+              <text x="610" y="114" fill="#4a4a4a" font-size="11">推送 / Pages</text>
+              <text x="610" y="132" fill="#7a7a7a" font-size="10">Settings → /docs</text>
+            </g>
+
+            <g fill="none" stroke="#6f9bb8" stroke-width="1.4">
+              <path d="M 144 110 L 166 110" marker-end="url(#arr)"/>
+              <path d="M 288 110 L 310 110" marker-end="url(#arr)"/>
+              <path d="M 432 110 L 454 110" marker-end="url(#arr)"/>
+              <path d="M 576 110 L 598 110" marker-end="url(#arr)"/>
+            </g>
+
+            <text x="380" y="40" text-anchor="middle" fill="#7a7a7a" font-size="11" letter-spacing="0.06em">SOFT SKILL · NO PUSH HOOK · PAGES MANUAL</text>
+          </svg>
+          <figcaption><span class="fig-num">FIG 1</span>上架流程 · 触发 → 审查 → 写文件 → 清单 → 你推送并打开 Pages</figcaption>
+        </figure>
+
+        <p>代理会读取这些路径：</p>
+        <pre><code>skills/github-launch/SKILL.md
+skills/github-launch/assets/     # 与 templates/ 内容相同
+templates/
+docs/                            # Pages 源文件；在 Settings 里打开
+scripts/check_kit.py             # 本仓库的 CI</code></pre>
+        <p>落地页是 <code>docs/index.html</code>。空文件 <code>docs/.nojekyll</code> 用于阻止 Jekyll 改写 HTML。站点可访问后，主页为 <a href="https://loomlab-ai.github.io/github-launch-skill/">https://loomlab-ai.github.io/github-launch-skill/</a>。把该 URL 填入 About 的 homepage。</p>
+        <p>建议的 About 描述（97 个字符）：</p>
+        <pre><code>Agent Skill that packages a project for GitHub: bilingual README, About, license, CI, Pages, SEO.</code></pre>
+        <p>建议的 topics：<code>agent-skills</code>、<code>github</code>、<code>readme</code>、<code>seo</code>、<code>cicd</code>、<code>open-source</code>、<code>cursor</code>、<code>claude</code>。About 描述和 topics 用这一份英文；GitHub 的 About 栏不是双语字段。</p>
+      </section>
+
+      <section>
+        <h2><span class="num">06</span>配置</h2>
+        <p>没有配置文件。代理从目标仓库读取项目名、读者、版权持有者和公开联系方式。若目标仓库没有公开联系方式，只链接 GitHub 所有者，不编造邮箱。不会编造个人姓名、电话或雇主，也不会把本仓库的联系方式抄过去。</p>
+        <p>首次上架时，代理可改 README、补缺失的 <code>LICENSE</code>、<code>.gitignore</code>、<code>.github/workflows/ci.yml</code>、<code>docs/</code>、<code>llms.txt</code> 和 <code>.github/PUBLISH_CHECKLIST.md</code>。不改写历史。发布后可删除检查清单。</p>
+        <p>新项目默认许可证为 MIT。已有 <code>LICENSE</code> 保持不动，除非你明确要求更换。</p>
+      </section>
+
+      <section>
+        <h2><span class="num">07</span>常见问题</h2>
+        <h3>这个技能会阻止 git push 吗？</h3>
+        <p>不会。它是软技能：步骤加清单。不安装 git hook，不设 GitHub ruleset，也不用工具权限拒绝 <code>git push</code>。</p>
+        <h3>它会打开 GitHub Pages 吗？</h3>
+        <p>不会。它可以添加 <code>/docs</code> 站点，并给出要填进 About 的主页 URL。在 Settings → Pages → Deploy from a branch → <code>/docs</code> 打开 Pages。</p>
+        <h3>它会选哪种许可证？</h3>
+        <p>默认 MIT。仓库已有许可证，或你需要 Apache-2.0（专利授权）或 AGPL-3.0（网络 copyleft）时除外。不会悄悄更换许可证。</p>
+        <h3>中英文 README 如何保持一致？</h3>
+        <p>章节顺序、命令、版本号相同。一次改动若动了其中一个文件，须同时改另一个。</p>
+        <h3>如果项目还不该公开呢？</h3>
+        <p>直接说明。技能仍会写打包文件。除非你明确要求把仓库设为公开，否则不改可见性；密钥检查未通过时也不会改为公开。</p>
+      </section>
+
+      <footer>
+        <h4>Repository &amp; Contact</h4>
+        <ul>
+          <li>Repository · <a href="https://github.com/loomlab-ai/github-launch-skill">loomlab-ai/github-launch-skill</a></li>
+          <li>English README · <a href="https://github.com/loomlab-ai/github-launch-skill/blob/main/README.md">README.md</a></li>
+          <li>中文说明 · <a href="https://github.com/loomlab-ai/github-launch-skill/blob/main/README.zh-CN.md">README.zh-CN.md</a></li>
+          <li>llms.txt · <a href="https://loomlab-ai.github.io/github-launch-skill/llms.txt">Pages llms.txt</a></li>
+          <li>LoomLab · <a href="https://github.com/loomlab-ai">github.com/loomlab-ai</a></li>
+          <li>Email · <a href="mailto:lofisuchat@gmail.com">lofisuchat@gmail.com</a></li>
+          <li>GitHub Sponsors · LoomLab</li>
+          <li>X · <a href="https://x.com/su_lofi">@su_lofi</a></li>
+          <li>License · <a href="https://github.com/loomlab-ai/github-launch-skill/blob/main/LICENSE">MIT</a> · Copyright (c) 2026 LoomLab</li>
+        </ul>
+      </footer>
+
+    </article>
+  </body>
 </html>
