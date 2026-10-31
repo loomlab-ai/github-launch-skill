@@ -1,8 +1,8 @@
 # github-launch-skill
 
-> Agent Skill that launches your project onto GitHub: bilingual README, About, license, Pages, CI, and SEO.
+> Agent Skill that packages a project for GitHub: bilingual README, About, license, CI, Pages, SEO.
 
-Agent Skill for Cursor, Claude Code, OpenCode, and Codex. It packages a repository before that repository is public: bilingual README, About text, LICENSE, CI, a GitHub Pages landing under /docs, and a code-content review. MIT License. The procedure does not block git push.
+Agent Skill that packages a project for GitHub: bilingual README, About, license, CI, Pages, SEO. For Cursor, Claude Code, OpenCode, and Codex. It reviews the repository before the project is public. MIT License. The procedure does not block git push.
 
 Contact: https://github.com/loomlab-ai, lofisuchat@gmail.com, GitHub Sponsors, https://x.com/su_lofi.
 

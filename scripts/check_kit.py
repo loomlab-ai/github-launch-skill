@@ -40,7 +40,7 @@ REQUIRED = [
 ]
 
 EN_H2 = [
-    "Why",
+    "Purpose",
     "Quick start",
     "Features",
     "Install",
@@ -51,7 +51,7 @@ EN_H2 = [
     "Contact",
 ]
 ZH_H2 = [
-    "为什么",
+    "用途",
     "快速开始",
     "功能",
     "安装",

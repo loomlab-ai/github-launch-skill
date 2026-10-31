@@ -152,11 +152,11 @@ Order:
 
 1. H1 is the product name people search for, not "Welcome" or "Introduction".
 2. One-liner: the first paragraph. What it is and who it is for.
-3. Why, Quick start, Features, Install, Usage, Configuration, FAQ, License, Contact.
+3. Purpose, Quick start, Features, Install, Usage, Configuration, FAQ, License, Contact.
 
-English headings, exactly: `Why`, `Quick start`, `Features`, `Install`, `Usage`, `Configuration`, `FAQ`, `License`, `Contact`.
+English headings, exactly: `Purpose`, `Quick start`, `Features`, `Install`, `Usage`, `Configuration`, `FAQ`, `License`, `Contact`.
 
-Chinese headings, exactly: `为什么`, `快速开始`, `功能`, `安装`, `用法`, `配置`, `常见问题`, `许可证`, `联系`.
+Chinese headings, exactly: `用途`, `快速开始`, `功能`, `安装`, `用法`, `配置`, `常见问题`, `许可证`, `联系`.
 
 | Token | Write |
 | --- | --- |
