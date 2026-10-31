@@ -38,7 +38,7 @@ Other agents and user-level paths are in [Install](#install). The steps are in [
 - License: MIT by default; Apache-2.0 when you need a patent grant, AGPL-3.0 when you need network copyleft
 - Add a short GitHub Actions workflow (lint, test, or a docs check)
 - Prepare GitHub Pages under `/docs`, and state how to turn it on in Settings (the skill does not enable Pages)
-- GEO and SEO: stable headings, an FAQ, `llms.txt`, and Pages meta
+- GEO and SEO: stable headings, an FAQ, and Pages meta
 - A publish checklist the agent fills with `pass`, `fail`, or `skip`
 
 ## Install
@@ -104,7 +104,7 @@ Suggested topics: `agent-skills`, `github`, `readme`, `seo`, `cicd`, `open-sourc
 
 No configuration file. The agent reads the project name, audience, copyright holder, and public contact from the target repository. If the target has no public contact, it links the GitHub owner and does not invent an email. It does not invent a personal name, phone number, or employer, and it does not copy this repository's contact line.
 
-On a first launch, the agent may edit the README and add these files when they are missing: `LICENSE`, `.gitignore`, `.github/workflows/ci.yml`, `docs/`, `llms.txt`, and `.github/PUBLISH_CHECKLIST.md`. It does not rewrite history. You can delete the checklist after you publish.
+On a first launch, the agent may edit the README and add these files when they are missing: `LICENSE`, `.gitignore`, `.github/workflows/ci.yml`, `docs/`, and `.github/PUBLISH_CHECKLIST.md`. It does not rewrite history. You can delete the checklist after you publish.
 
 The default license for a new project is MIT. An existing `LICENSE` stays unless you explicitly ask to change it.
 
